@@ -1,7 +1,7 @@
 <template>
     <div v-if="contact" class="page">
         <h4>Hiệu chỉnh Liên hệ</h4>
-        <ContactForm :contact="contact" @submit:contact="updateContact" @delete:contact="deleteContact" />
+        <ContactForm :contact="contact" @a:contact="updateContact" @delete:contact="deleteContact" />
         <p>{{ message }}</p>
     </div>
 </template>
@@ -27,7 +27,6 @@ export default {
                 this.contact = await ContactService.get(id);
             } catch (error) {
                 console.log(error);
-                // Chuyển sang trang NotFound đồng thời giữ cho URL không đổi
                 this.$router.push({
                     name: "notfound",
                     params: {
