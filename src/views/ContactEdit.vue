@@ -1,7 +1,7 @@
 <template>
     <div v-if="contact" class="page">
         <h4>Hiệu chỉnh Liên hệ</h4>
-        <ContactForm :contact="contact" @a:contact="updateContact" @delete:contact="deleteContact" />
+        <ContactForm :contact="contact" @submit:contact="updateContact" @delete:contact="deleteContact" />
         <p>{{ message }}</p>
     </div>
 </template>
@@ -46,8 +46,10 @@ export default {
             }
         },
         async deleteContact() {
+       
             if (confirm("Bạn muốn xóa Liên hệ này?")) {
                 try {
+                    console.log(this.contact._id);
                     await ContactService.delete(this.contact._id);
                     this.$router.push({ name: "contactbook" });
                 } catch (error) {
